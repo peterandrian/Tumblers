@@ -48,39 +48,44 @@ document.addEventListener('DOMContentLoaded', () => {
       quantity: itemQuantity,
       subtotal: calculateSubtotal(itemPrice, itemQuantity),
     };
-
+  
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     cartItems.push(cartItem);
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     const cartItemContainer = document.querySelector('.cart-item');
-
-    cartItemContainer.innerHTML = ''; 
-
-    cartItems.forEach((cartItem) => {
-      const newCartItem = document.createElement('div');
-      newCartItem.classList.add('cart-row');
-      newCartItem.innerHTML = `
-        <div class="cart-box">
-          <img src="${cartItem.img}" alt="item-image"> <br>
-          <span class="cart-item-title">${cartItem.name}</span>
-        </div>
-        <div class="cart-box cart-item-price">
-          ${cartItem.price}
-        </div>
-        <div class="cart-box">
-          <input type="number" value="${cartItem.quantity}" class="cart-quantity">
-        </div>
-        <div class="cart-box cart-subtotal">
-          ${cartItem.subtotal}
-        </div>
-        <div class="cart-box">
-          <button class="btn-remove"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-      `;
-      cartItemContainer.appendChild(newCartItem);
-    });
-    totalPrice();
+  
+    if (cartItemContainer) {
+      cartItemContainer.innerHTML = ''; // Clear the content before adding new items
+  
+      cartItems.forEach((cartItem) => {
+        const newCartItem = document.createElement('div');
+        newCartItem.classList.add('cart-row');
+        newCartItem.innerHTML = `
+          <div class="cart-box">
+            <img src="${cartItem.img}" alt="item-image"> <br>
+            <span class="cart-item-title">${cartItem.name}</span>
+          </div>
+          <div class="cart-box cart-item-price">
+            ${cartItem.price}
+          </div>
+          <div class="cart-box">
+            <input type="number" value="${cartItem.quantity}" class="cart-quantity">
+          </div>
+          <div class="cart-box cart-subtotal">
+            ${cartItem.subtotal}
+          </div>
+          <div class="cart-box">
+            <button class="btn-remove"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        `;
+        cartItemContainer.appendChild(newCartItem);
+      });
+      totalPrice();
+    } else {
+      console.error("cartItemContainer not found");
+    }
   }
+  
 
   function removeFromCart(event) {
     var removeBtnClicked = event.target;
