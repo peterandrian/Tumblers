@@ -80,7 +80,11 @@ function addToCart(itemImage,itemName,itemPrice,itemQuantity){
   });
   totalPrice();
 }
-  
+ 
+function calculateSubtotal(price, quantity) {
+  return price * quantity;
+}
+
 function removeFromCart(event){
     var removeBtnClicked = event.target
     removeBtnClicked.parentElement.parentElement.parentElement.remove()
