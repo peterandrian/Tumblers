@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', ()=> {
+  
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
 const close = document.getElementById('x-btn');
@@ -116,3 +118,6 @@ function totalPrice() {
 
   totalPriceElement.textContent = "Rp. " + totalPrice.toLocaleString("id-ID", { style: "decimal" });
 }
+
+});
+
