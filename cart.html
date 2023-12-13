@@ -14,12 +14,12 @@
 <nav>
     <a href="#"><img src="./asset/logo.JPG" alt=""></a>
     <ul id="nav">
-        <li><a href="home.html" class="active">Home</a></li>
+        <li><a href="home.html">Home</a></li>
         <li><a href="products.html"">Products</a></li>
         <li><a href="about-us.html">About Us</a></li>
         <li><a href="#contact">Contact Us</a></li>
-        <li id="none"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
-        <a href="" id="x-btn"><i class="fa-solid fa-xmark"></i></a>
+        <li id="none"><a href="cart.html" class="active"><i class="fa-solid fa-cart-shopping"></i></a></li>
+        <a href="#" id="x-btn"><i class="fa-solid fa-xmark"></i></a>
     </ul>
 
     <div class="mobile">
@@ -28,86 +28,63 @@
     </div>
 </nav>
 
-<div class="container"> 
-    <div class="left-text">
-        <h5 style="text-align: right;">Fashion</h5><br><br><br><br>
-        <h3>Bringing You</h3>
-        <h1>THE BEST OF THE BEST</h1><br><br>
-        <h4 style="text-align: center;"">Top Notch Product</h4>
-    </div>
-    <div class="right-text">
-        <span>Unique and Awesome Tumblers</span><br>
-        <h2>STAY HYDRATED</h2>
-        <h1>EXQUISITE</h1>
-        <h5 class="right">Your Carriable Best Friend</h5><br><br><br>
-        <div class="btn"><a href="products.html">See Our Products</a></div>
-    </div>
-</div>
-<!-- global shipping, 24/7 Support, High Quality, Quick Delivery -->
-<div class="plus">
-    <div class="plus-container">
-        <img src="asset/global.jpg" alt="">
-        <h5>Global Shipping</h5>
-    </div>
-    <div class="plus-container">
-        <img src="asset/hq.jpg" alt="">
-        <h5>High Quality</h5>
-    </div>
-    <div class="plus-container">
-        <img src="asset/del.jpg" alt="">
-        <h5>Quick Delivery</h5>
-    </div>
-    <div class="plus-container">
-        <img src="asset/support.jpg" alt="">
-        <h5>24/7 Support</h5>
-    </div>
-</div>
+<div class="items">
+    <h2>CART</h2>
+    <div class="overflow">
+        <div class="cart-row cart-head">
+            <div class="cart-box">Items</div>
+            <div class="cart-box">Price</div>
+            <div class="cart-box">Quantity</div>
+            <div class="cart-box">Subtotal</div>
+            <div class="cart-box">Remove</div>
+        </div>
+        <div class="cart-item">
+            <div class="cart-row">
+                <div class="cart-box">
+                    <img src="asset/product/b1.jpg"> <br>
+                    <span class="cart-item-title">Customable Name Tumbler</span>
+                </div>
+                <div class="cart-box cart-item-price">
+                    Rp. 90.000
+                </div>
+                <div class="cart-box">
+                    <input type="number" value="1" class="cart-quantity">
+                </div>
+                <div class="cart-box cart-subtotal">
+                    Rp. 90.000
+                </div>
+                <div class="cart-box">
+                    <button class="btn-remove"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
 
-<div class="best" id="best">
-    <div class="hl-best">
-    <h1>BEST PRODUCT</h1>
-    <p>Here are some of our best selling products.</p>
+            <div class="cart-row">
+                <div class="cart-box">
+                    <img src="asset/product/b2.jpg"> <br>
+                    <span class="cart-item-title">"LARQ" Unspillable Tumbler</span>
+                </div>
+                <div class="cart-box cart-item-price">
+                    Rp. 200.000
+                </div>
+                <div class="cart-box">
+                    <input type="number" value="2" class="cart-quantity">
+                </div>
+                <div class="cart-box cart-subtotal">
+                    Rp. 400.000
+                </div>
+                <div class="cart-box">
+                    <button class="btn-remove"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="container-prod">
-        <div class="prod-box" onclick="window.location.href='b1.html'">
-            <img src="asset/product/b1.jpg" alt="">
-            <div class="desk">
-                <h5>Customable Name Tumbler</h5>
-                <h4>Rp. 99,000</h4>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-plus"></i></a>
+    <div class="total-container">
+        <div class="cart-total">
+            <h3>Total:</h3>
+            <span class="cart-total-price">Rp. 490,000</span>
         </div>
-        <div class="prod-box">
-            <img src="asset/product/b2.jpg" alt="">
-            <div class="desk">
-                <h5>"LARQ" Unspillable Tumbler</h5>
-                <h4>Rp. 200,000</h4>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-plus"></i></a>
-        </div>
-        <div class="prod-box">
-            <img src="asset/product/b3.jpg" alt="">
-            <div class="desk">
-                <h5>Pocket Tumbler</h5>
-                <h4>Rp. 79,000</h4>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-plus"></i></a>
-        </div>
-        <div class="prod-box">
-            <img src="asset/product/b5.jpg" alt="">
-            <div class="desk">
-                <h5>"Feijian" Sport Tumbler</h5>
-                <h4>Rp. 130,000</h4>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-plus"></i></a>
-        </div>
-        <div class="prod-box">
-            <img src="asset/product/b4.jpg" alt="">
-            <div class="desk">
-                <h5>Spiral Grip Tumbler</h5>
-                <h4>Rp. 129,000</h4>
-            </div>
-            <a href="#"><i class="fa-solid fa-cart-plus"></i></a>
+        <div class="purc">
+            <button class="btn-purchase" type="button">PURCHASE</button>
         </div>
     </div>
 </div>

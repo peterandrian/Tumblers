@@ -14,8 +14,8 @@
 <nav>
     <a href="#"><img src="./asset/logo.JPG" alt=""></a>
     <ul id="nav">
-        <li><a href="home.html" class="active">Home</a></li>
-        <li><a href="products.html"">Products</a></li>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="products.html"class="active">Products</a></li>
         <li><a href="about-us.html">About Us</a></li>
         <li><a href="#contact">Contact Us</a></li>
         <li id="none"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
@@ -28,38 +28,35 @@
     </div>
 </nav>
 
-<div class="container"> 
-    <div class="left-text">
-        <h5 style="text-align: right;">Fashion</h5><br><br><br><br>
-        <h3>Bringing You</h3>
-        <h1>THE BEST OF THE BEST</h1><br><br>
-        <h4 style="text-align: center;"">Top Notch Product</h4>
+<div class="pd-det">
+    <div class="pd-img-gal">
+        <img src="asset/product/b1.jpg" alt="" class="lg-img" id="lg-img">
+        <div class="sm-img-gal">
+            <div class="sm-img">
+                <img src="asset/product/b1.jpg" alt="" class="small-img img-active">
+            </div>
+            <div class="sm-img">
+                <img src="asset/product/b11.jpg" alt="" class="small-img">
+            </div>
+        </div>
     </div>
-    <div class="right-text">
-        <span>Unique and Awesome Tumblers</span><br>
-        <h2>STAY HYDRATED</h2>
-        <h1>EXQUISITE</h1>
-        <h5 class="right">Your Carriable Best Friend</h5><br><br><br>
-        <div class="btn"><a href="products.html">See Our Products</a></div>
-    </div>
-</div>
-<!-- global shipping, 24/7 Support, High Quality, Quick Delivery -->
-<div class="plus">
-    <div class="plus-container">
-        <img src="asset/global.jpg" alt="">
-        <h5>Global Shipping</h5>
-    </div>
-    <div class="plus-container">
-        <img src="asset/hq.jpg" alt="">
-        <h5>High Quality</h5>
-    </div>
-    <div class="plus-container">
-        <img src="asset/del.jpg" alt="">
-        <h5>Quick Delivery</h5>
-    </div>
-    <div class="plus-container">
-        <img src="asset/support.jpg" alt="">
-        <h5>24/7 Support</h5>
+
+    <div class="pd-desk">
+        <h3 class="item-name">Customable Name Tumbler</h3>
+        <h1 class="item-price">Rp. 99.000</h1>
+        <select aria-placeholder="Select Color">
+            <option>Select Color</option>
+            <option>Black</option>
+            <option>Pink</option>
+            <option>Pastel Pink</option>
+            <option>Dark Green</option>
+            <option>Pastel Blue</option>
+        </select>
+        <input type="number" value="1" class="item-quantity">
+        <button class="add-to-cart-btn"><i class="fa-solid fa-cart-plus"></i></button>
+        <h3 class="p-desk-pad">Product Description</h3>
+        <span>A customable name tumbler, can contain up to 800ml of liquid, made with stainless steel and printed with UV printer so that the color wont decay and will be gripable and not slippery, 
+            can contain hot or cold liquid, it also ofers various colors to choose from.</span>
     </div>
 </div>
 
@@ -77,6 +74,7 @@
             </div>
             <a href="#"><i class="fa-solid fa-cart-plus"></i></a>
         </div>
+
         <div class="prod-box">
             <img src="asset/product/b2.jpg" alt="">
             <div class="desk">
@@ -162,6 +160,23 @@
         <p>© 2023 Tumblers</p>
     </div>
 </div>
+<script>
+    let imglist = document.getElementsByClassName("small-img");
+    let lgImg = document.getElementById('lg-img');
+
+    for (let i = 0; i < imglist.length; i++) {
+    imglist[i].addEventListener('click', () => {
+    lgImg.src = imglist[i].src;
+    for (const img of imglist) {
+      img.classList.remove('img-active');
+    }
+    
+    
+    lgImg.src = imglist[i].src;
+    imglist[i].classList.add('img-active');
+    })};
+    
+</script>
 <script src="final.js" async></script>
 </body>
 </html>
