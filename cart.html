@@ -39,49 +39,12 @@
             <div class="cart-box">Remove</div>
         </div>
         <div class="cart-item">
-            <div class="cart-row">
-                <div class="cart-box">
-                    <img src="asset/product/b1.jpg"> <br>
-                    <span class="cart-item-title">Customable Name Tumbler</span>
-                </div>
-                <div class="cart-box cart-item-price">
-                    Rp. 90.000
-                </div>
-                <div class="cart-box">
-                    <input type="number" value="1" class="cart-quantity">
-                </div>
-                <div class="cart-box cart-subtotal">
-                    Rp. 90.000
-                </div>
-                <div class="cart-box">
-                    <button class="btn-remove"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div>
-
-            <div class="cart-row">
-                <div class="cart-box">
-                    <img src="asset/product/b2.jpg"> <br>
-                    <span class="cart-item-title">"LARQ" Unspillable Tumbler</span>
-                </div>
-                <div class="cart-box cart-item-price">
-                    Rp. 200.000
-                </div>
-                <div class="cart-box">
-                    <input type="number" value="2" class="cart-quantity">
-                </div>
-                <div class="cart-box cart-subtotal">
-                    Rp. 400.000
-                </div>
-                <div class="cart-box">
-                    <button class="btn-remove"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div>
         </div>
     </div>
     <div class="total-container">
         <div class="cart-total">
             <h3>Total:</h3>
-            <span class="cart-total-price">Rp. 490,000</span>
+            <span class="cart-total-price">Rp. 0</span>
         </div>
         <div class="purc">
             <button class="btn-purchase" type="button">PURCHASE</button>
@@ -103,23 +66,12 @@
         </div>
     </div>
 
-    <div class="footer-box categories">
-        <h3>Categories</h3>
-        <ul>
-            <li><a href="#best">Best Sale</a></li>
-            <li><a href="#">Customable Tumblers</a></li>
-            <li><a href="#">Unspillable Tumblers</a></li>
-            <li><a href="#">Products</a></li>
-        </ul>
-    </div>
-
     <div class="footer-box">
         <h3>Information</h3>
         <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Term & Condition</a></li>
-            <li><a href="#">Shopping & Delivery</a></li>
-            <li><a href="#">Private Policy</a></li>
+            <li><a href="about-us.html#term">Term & Condition</a></li>
+            <li><a href="about-us.html#return">Return Policy</a></li>
+            <li><a href="about-us.html#privacy">Privacy Policy</a></li>
         </ul>
     </div>
 
@@ -129,10 +81,10 @@
         <p><strong>Phone: </strong> 021-1214-555/(+62)896-3072-5148</p>
         <div class="sosmed">
             <p><strong>Connect With us:</strong></p>
-            <a href=""><i class="fab fa-instagram"></i></a>
-            <a href=""><i class="fab fa-facebook-f"></i></a>
-            <a href=""><i class="fab fa-whatsapp"></i></a>
-            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href="http://instagram.com"><i class="fab fa-instagram"></i></a>
+            <a href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>
+            <a href="http://whatsapp.com"><i class="fab fa-whatsapp"></i></a>
+            <a href="http://twitter.com"><i class="fab fa-twitter"></i></a>
         </div>
     </div>
     <div class="tm">
@@ -140,5 +92,56 @@
     </div>
 </div>
 <script src="final.js"></script>
+<script>
+  let existingProducts = JSON.parse(localStorage.getItem('products')) || [];
+
+  const cartItemContainer = document.getElementsByClassName('cart-item')[0];
+
+  cartItemContainer.innerHTML = '';
+
+  existingProducts.forEach((cartItem) => {
+    const newCartItem = document.createElement('div');
+    newCartItem.classList.add('cart-row');
+    newCartItem.innerHTML = `
+      <div class="cart-box">
+        <img src="${cartItem.img}" alt="item-image"> <br>
+        <span class="cart-item-title">${cartItem.name}</span>
+      </div>
+      <div class="cart-box cart-item-price">
+        ${cartItem.price}
+      </div>
+      <div class="cart-box">
+        <input type="number" value="${cartItem.quantity}" class="cart-quantity">
+      </div>
+      <div class="cart-box cart-subtotal">
+        ${cartItem.subtotal}
+      </div>
+      <div class="cart-box">
+        <button class="btn-remove"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    `;
+
+    cartItemContainer.appendChild(newCartItem);
+
+    const subtotalElement = newCartItem.querySelector('.cart-subtotal');
+    subtotalElement.textContent = "Rp. " + cartItem.subtotal.toLocaleString("id-ID", { style: "decimal" });
+  });
+
+  totalPrice();
+
+function totalPrice() {
+var totalPriceElement = document.querySelector('.cart-total-price');
+var totalPrice = 0;
+
+const cartSubtotals = document.querySelectorAll('.cart-subtotal');
+for (const cartSubtotal of cartSubtotals) {
+    const subtotal = parseFloat(cartSubtotal.textContent.replace(/Rp\.|\D/g, ''));
+    totalPrice += subtotal;
+}
+
+totalPriceElement.textContent = "Rp. " + totalPrice.toLocaleString("id-ID", { style: "decimal" });
+}
+
+</script>
 </body>
 </html>

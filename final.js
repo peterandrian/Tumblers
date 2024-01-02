@@ -37,65 +37,48 @@ document.addEventListener('DOMContentLoaded', () => {
     itemName = shopItem.getElementsByClassName('item-name')[0].innerText;
     itemQuantity = shopItem.getElementsByClassName('item-quantity')[0].value;
     itemPrice = shopItem.getElementsByClassName('item-price')[0].innerText;
-    addToCart(itemImage, itemName, itemPrice, itemQuantity);
-  }
-
-  function addToCart(itemImage, itemName, itemPrice, itemQuantity) {
-    const cartItem = {
-      name: itemName,
+    ActPrice = itemPrice.replace(/Rp\.|\D/g, '');
+    itemSubtotal = parseInt(ActPrice) * parseFloat(itemQuantity);
+  
+    let existingProducts = JSON.parse(localStorage.getItem('products')) || [];
+  
+    const product = {
       img: itemImage,
-      price: itemPrice,
+      name: itemName,
       quantity: itemQuantity,
-      subtotal: calculateSubtotal(itemPrice, itemQuantity),
+      price: itemPrice,
+      subtotal: itemSubtotal
     };
-    let cartItems = JSON.parse(localStorage.getItem('cartItem')) || [];
-    cartItems.push(cartItem);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    const cartItemContainer = document.querySelector('.cart-item');
-
-    if (cartItemContainer) {
-      cartItemContainer.innerHTML = ''; 
-
-      cartItems.forEach((cartItem) => {
-        const newCartItem = document.createElement('div');
-        newCartItem.classList.add('cart-row');
-        newCartItem.innerHTML = `
-          <div class="cart-box">
-            <img src="${cartItem.img}" alt="item-image"> <br>
-            <span class="cart-item-title">${cartItem.name}</span>
-          </div>
-          <div class="cart-box cart-item-price">
-            ${cartItem.price}
-          </div>
-          <div class="cart-box">
-            <input type="number" value="${cartItem.quantity}" class="cart-quantity">
-          </div>
-          <div class="cart-box cart-subtotal">
-            ${cartItem.subtotal}
-          </div>
-          <div class="cart-box">
-            <button class="btn-remove"><i class="fa-solid fa-xmark"></i></button>
-          </div>
-        `;
-        cartItemContainer.appendChild(newCartItem);
-      });
-      totalPrice();
-    } else {
-      console.error("cartItemContainer not found");
-    }
+  
+    existingProducts.push(product);
+  
+    localStorage.setItem('products', JSON.stringify(existingProducts));
   }
-
+  
   function removeFromCart(event) {
     var removeBtnClicked = event.target;
-    removeBtnClicked.parentElement.parentElement.parentElement.remove();
-    totalPrice();
+    var cartItemToRemove = removeBtnClicked.parentElement.parentElement.parentElement;
+    cartItemToRemove.remove();
+    var productId = cartItemToRemove.dataset.productId;
+    var existingProducts = JSON.parse(localStorage.getItem('products')) || [];
+
+    var indexToRemove = existingProducts.findIndex(product => product.id === productId);
+  
+    if (indexToRemove !== -1) {
+      existingProducts.splice(indexToRemove, 1);
+  
+      localStorage.setItem('products', JSON.stringify(existingProducts));
+  
+      totalPrice();
+    }
   }
+  
 
   function quantityUpdate() {
     const cartSubtotals = document.querySelectorAll('.cart-subtotal');
     for (const cartSubtotal of cartSubtotals) {
       const priceElement = cartSubtotal.parentElement.querySelector('.cart-item-price');
-      const price = parseFloat(priceElement.textContent.replace("Rp. ", "").replace(".", ""));
+      const price = parseFloat(priceElement.textContent.replace(/Rp\.|\D/g, ''))
       const quantityElement = cartSubtotal.parentElement.querySelector('.cart-quantity');
       const quantity = parseFloat(quantityElement.value);
       const updatedSubtotal = price * quantity;
@@ -104,17 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
     totalPrice();
   }
 
-  function calculateSubtotal(price, quantity) {
-    return price * quantity;
-  }
-
   function totalPrice() {
     var totalPriceElement = document.querySelector('.cart-total-price');
     var totalPrice = 0;
 
     const cartSubtotals = document.querySelectorAll('.cart-subtotal');
     for (const cartSubtotal of cartSubtotals) {
-      const subtotal = parseFloat(cartSubtotal.textContent.replace("Rp. ", "").replace(".", ""));
+      const subtotal = parseFloat(cartSubtotal.textContent.replace(/Rp\.|\D/g, ''));
       totalPrice += subtotal;
     }
 
